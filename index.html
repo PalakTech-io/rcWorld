@@ -97,14 +97,26 @@
   /* Animated machines in background */
   .hero-machine {
     position: absolute;
-    right: -5%;
+    right: -2%;
     bottom: 0;
-    width: 55%;
-    height: 100%;
+    width: 45%;
+    height: 85%;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     animation: machineFloat 6s ease-in-out infinite;
+    z-index: 0;
+    opacity: 0.85;
+  }
+
+  .hero-badge,
+  .hero-title,
+  .hero-sub,
+  .hero-cta,
+  .hero-stats,
+  .scroll-indicator {
+    position: relative;
+    z-index: 2;
   }
   @keyframes machineFloat {
     0%, 100% { transform: translateY(0px); }
@@ -1209,12 +1221,470 @@
     .hero-stats { gap: 30px; }
     .fleet-header { flex-direction: column; gap: 16px; align-items: flex-start; }
   }
+
+  /* ===== GOOGLE SIGN-IN MODAL ===== */
+  .signin-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .signin-box {
+    background: #111;
+    border: 1px solid rgba(255,107,0,0.25);
+    width: 420px;
+    max-width: 95vw;
+    padding: 48px 40px;
+    position: relative;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,107,0,0.08);
+    animation: slideUp 0.35s ease;
+  }
+  @keyframes slideUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+  .signin-close {
+    position: absolute;
+    top: 16px; right: 20px;
+    background: none; border: none;
+    color: rgba(255,255,255,0.3);
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+  }
+  .signin-close:hover { color: var(--orange); }
+
+  .signin-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .signin-logo span { color: var(--orange); }
+
+  .signin-tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 32px;
+  }
+
+  .signin-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .signin-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .signin-sub .highlight {
+    color: var(--orange);
+    font-weight: 600;
+  }
+
+  .btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    background: #fff;
+    color: #333;
+    border: none;
+    padding: 14px 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 12px;
+  }
+  .btn-google:hover { background: #f0f0f0; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+  .btn-google svg { flex-shrink: 0; }
+
+  .signin-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+    color: rgba(255,255,255,0.15);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+  }
+  .signin-divider::before,
+  .signin-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .signin-perks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .signin-perk {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.03em;
+  }
+  .signin-perk-icon {
+    width: 28px; height: 28px;
+    background: rgba(255,107,0,0.1);
+    border: 1px solid rgba(255,107,0,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  /* ===== VIRAL SHARE SECTION ===== */
+  #viral {
+    background: var(--dark3);
+    padding: 120px 8vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .viral-bg-text {
+    position: absolute;
+    right: -2%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18vw;
+    color: rgba(255,107,0,0.03);
+    pointer-events: none;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .viral-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .viral-mockup {
+    position: relative;
+  }
+
+  .share-card {
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .share-card-video {
+    aspect-ratio: 9/16;
+    background: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .share-winner-banner {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 20px;
+    background: linear-gradient(rgba(0,0,0,0.8), transparent);
+    text-align: center;
+  }
+
+  .winner-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--yellow);
+    text-shadow: 0 0 30px rgba(255,208,0,0.8);
+    animation: winnerPulse 2s ease-in-out infinite;
+    line-height: 1;
+  }
+  .winner-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  @keyframes winnerPulse {
+    0%, 100% { transform: scale(1); text-shadow: 0 0 30px rgba(255,208,0,0.8); }
+    50% { transform: scale(1.05); text-shadow: 0 0 60px rgba(255,208,0,1); }
+  }
+
+  .share-card-bottom {
+    padding: 14px 16px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .share-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    color: var(--dark);
+    flex-shrink: 0;
+  }
+
+  .share-info { flex: 1; }
+  .share-username {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+  .share-caption {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 2px;
+  }
+
+  .share-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .share-btn-sm {
+    display: flex; align-items: center; justify-content: center;
+    gap: 4px;
+    padding: 5px 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .share-btn-tiktok { background: #010101; color: #fff; }
+  .share-btn-reels { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+  .share-btn-yt { background: #FF0000; color: #fff; }
+
+  /* floating confetti elements */
+  .confetti-el {
+    position: absolute;
+    pointer-events: none;
+    animation: confettiFall linear infinite;
+    opacity: 0;
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(300px) rotate(360deg); opacity: 0; }
+  }
+
+  .viral-features {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .viral-feat {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .viral-feat:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .viral-feat-icon {
+    width: 48px; height: 48px;
+    background: rgba(255,107,0,0.1);
+    border: 1px solid rgba(255,107,0,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.3rem;
+  }
+
+  .viral-feat-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    color: var(--white);
+  }
+  .viral-feat-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  /* ===== REVENUE CALCULATOR ===== */
+  .revenue-calc {
+    margin-top: 32px;
+    background: var(--dark3);
+    border: 1px solid rgba(255,107,0,0.15);
+    padding: 28px;
+  }
+
+  .calc-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .calc-title::before { content:''; display:block; width:20px; height:1px; background:var(--orange); }
+
+  .calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .calc-row:last-child { border-bottom: none; }
+
+  .calc-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  .calc-value {
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .calc-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,107,0,0.3);
+  }
+
+  .calc-total-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--gray);
+  }
+
+  .calc-total-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--orange);
+    line-height: 1;
+  }
+
+  .projection-formula {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+    text-align: right;
+  }
+
+  /* Slider styles for calculator */
+  .calc-slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .calc-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 120px;
+    height: 3px;
+    background: rgba(255,107,0,0.2);
+    border-radius: 2px;
+    outline: none;
+  }
+  .calc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--orange);
+    cursor: pointer;
+  }
+  .calc-slider-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--orange);
+    min-width: 28px;
+    text-align: center;
+  }
+
+  /* Patent badge */
+  .patent-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,208,0,0.06);
+    border: 1px solid rgba(255,208,0,0.2);
+    padding: 8px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 40px;
+  }
+  .patent-dot {
+    width: 6px; height: 6px;
+    background: var(--yellow);
+    border-radius: 50%;
+    animation: recBlink 2s ease-in-out infinite;
+  }
 </style>
 </head>
 <body>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
+
 
 <!-- NAV -->
 <nav>
@@ -1224,6 +1694,7 @@
     <li><a href="#fleet">Fleet</a></li>
     <li><a href="#cameras">Cameras</a></li>
     <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#viral">Social</a></li>
     <li><a href="#investment">Investment</a></li>
     <li><a href="#cta" class="nav-cta">Get Started</a></li>
   </ul>
@@ -1244,8 +1715,8 @@
   <p class="hero-sub">Control Real Heavy Machinery — From Anywhere on Earth</p>
 
   <div class="hero-cta">
-    <button class="btn-primary">Explore the Fleet</button>
-    <button class="btn-secondary">Watch Demo</button>
+    <button class="btn-primary" onclick="document.getElementById('fleet').scrollIntoView({behavior:'smooth'})">Explore the Fleet</button>
+    <button class="btn-secondary" onclick="openDemo()">Try Demo</button>
   </div>
 
   <div class="hero-stats">
@@ -1331,7 +1802,7 @@
       <p>With <strong>Raspberry Pi 5 onboard computers</strong>, real hydraulic mechanics, and multi-angle HD cameras, every session is broadcast-quality and completely unique.</p>
     </div>
     <div class="concept-visual reveal">
-      <!-- Website mockup -->
+      <!-- Interactive booking mockup -->
       <div style="background: #111; border: 1px solid rgba(255,107,0,0.2); border-radius: 8px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.5);">
         <!-- Browser bar -->
         <div style="background: #1a1a1a; padding: 10px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.06);">
@@ -1341,43 +1812,113 @@
           <div style="flex: 1; background: #222; border-radius: 4px; padding: 4px 12px; margin-left: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; color: #555; letter-spacing: 0.1em;">rcworld.io/book</div>
         </div>
         <!-- App content -->
-        <div style="padding: 24px;">
+        <div style="padding: 24px;" id="bookingWidget">
           <!-- Machine selector -->
           <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--orange); text-transform: uppercase; margin-bottom: 12px;">Select Machine</div>
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 20px;">
-            <div style="background: rgba(255,107,0,0.15); border: 1px solid var(--orange); padding: 8px; text-align: center; border-radius: 4px;">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 20px;" id="machineSelector">
+            <div class="machine-opt" data-machine="excavator" data-label="Excavator" onclick="selectMachine(this)"
+              style="background: rgba(255,107,0,0.15); border: 1px solid var(--orange); padding: 8px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s;">
               <div style="font-size: 1.4rem;">🚜</div>
               <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--orange); margin-top: 4px;">Excavator</div>
             </div>
-            <div style="background: #1a1a1a; padding: 8px; text-align: center; border-radius: 4px;">
+            <div class="machine-opt" data-machine="dumptruck" data-label="Dump Truck" onclick="selectMachine(this)"
+              style="background: #1a1a1a; padding: 8px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent;">
               <div style="font-size: 1.4rem;">🚛</div>
               <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.1em; color: #555; margin-top: 4px;">Dump Truck</div>
             </div>
-            <div style="background: #1a1a1a; padding: 8px; text-align: center; border-radius: 4px;">
+            <div class="machine-opt" data-machine="loader" data-label="Loader" onclick="selectMachine(this)"
+              style="background: #1a1a1a; padding: 8px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent;">
               <div style="font-size: 1.4rem;">🏗️</div>
               <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.1em; color: #555; margin-top: 4px;">Loader</div>
             </div>
           </div>
           <!-- Session duration -->
           <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--orange); text-transform: uppercase; margin-bottom: 12px;">Session Duration</div>
-          <div style="display: flex; gap: 4px; margin-bottom: 20px;">
-            <div style="flex:1; background: #1a1a1a; padding: 10px; text-align: center; border-radius: 4px;">
-              <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: #555;">30m</div>
-              <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: #444; margin-top: 2px;">$15</div>
+          <div style="display: flex; gap: 4px; margin-bottom: 20px;" id="durationSelector">
+            <div class="dur-opt" data-dur="15m" onclick="selectDuration(this)"
+              style="flex:1; background: #1a1a1a; padding: 10px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent;">
+              <div class="dur-time" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: #555;">15m</div>
+              <div class="dur-price" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: #444; margin-top: 2px;">$20</div>
             </div>
-            <div style="flex:1; background: rgba(255,107,0,0.15); border: 1px solid var(--orange); padding: 10px; text-align: center; border-radius: 4px;">
-              <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--orange);">1hr</div>
-              <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: var(--orange); opacity: 0.7; margin-top: 2px;">$30</div>
+            <div class="dur-opt" data-dur="30m" onclick="selectDuration(this)"
+              style="flex:1; background: rgba(255,107,0,0.15); border: 1px solid var(--orange); padding: 10px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s;">
+              <div class="dur-time" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--orange);">30m</div>
+              <div class="dur-price" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: var(--orange); opacity: 0.7; margin-top: 2px;">$30</div>
             </div>
-            <div style="flex:1; background: #1a1a1a; padding: 10px; text-align: center; border-radius: 4px;">
-              <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: #555;">2hr</div>
-              <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: #444; margin-top: 2px;">$55</div>
+            <div class="dur-opt" data-dur="45m" onclick="selectDuration(this)"
+              style="flex:1; background: #1a1a1a; padding: 10px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent;">
+              <div class="dur-time" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: #555;">45m</div>
+              <div class="dur-price" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: #444; margin-top: 2px;">$35</div>
+            </div>
+            <div class="dur-opt" data-dur="1hr" onclick="selectDuration(this)"
+              style="flex:1; background: #1a1a1a; padding: 10px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent;">
+              <div class="dur-time" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: #555;">1hr</div>
+              <div class="dur-price" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: #444; margin-top: 2px;">$45</div>
             </div>
           </div>
           <!-- CTA -->
-          <div style="background: var(--orange); padding: 12px; text-align: center; border-radius: 4px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.15em; color: #0a0a0a; text-transform: uppercase;">Book Session — $30.00</div>
+          <div id="bookBtn" style="background: var(--orange); padding: 12px; text-align: center; border-radius: 4px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.15em; color: #0a0a0a; text-transform: uppercase; cursor: pointer; transition: background 0.2s;"
+            onmouseenter="this.style.background='#FFD000'" onmouseleave="this.style.background='var(--orange)'">
+            Book Session — $30.00
+          </div>
         </div>
       </div>
+
+      <script>
+        // Pricing data
+        const prices = {
+          excavator: { '15m': 20, '30m': 30, '45m': 35, '1hr': 45 },
+          dumptruck:  { '15m': 15, '30m': 25, '45m': 35, '1hr': 45 },
+          loader:     { '15m': 15, '30m': 25, '45m': 35, '1hr': 45 }
+        };
+
+        let selectedMachine = 'excavator';
+        let selectedDur = '30m';
+
+        function updateDurationPrices() {
+          document.querySelectorAll('.dur-opt').forEach(opt => {
+            const dur = opt.dataset.dur;
+            const priceEl = opt.querySelector('.dur-price');
+            priceEl.textContent = '$' + prices[selectedMachine][dur];
+          });
+          updateBookBtn();
+        }
+
+        function updateBookBtn() {
+          const price = prices[selectedMachine][selectedDur];
+          document.getElementById('bookBtn').textContent = 'Book Session — $' + price + '.00';
+        }
+
+        function selectMachine(el) {
+          document.querySelectorAll('.machine-opt').forEach(o => {
+            o.style.background = '#1a1a1a';
+            o.style.border = '1px solid transparent';
+            o.querySelector('div:last-child').style.color = '#555';
+          });
+          el.style.background = 'rgba(255,107,0,0.15)';
+          el.style.border = '1px solid var(--orange)';
+          el.querySelector('div:last-child').style.color = 'var(--orange)';
+          selectedMachine = el.dataset.machine;
+          updateDurationPrices();
+        }
+
+        function selectDuration(el) {
+          document.querySelectorAll('.dur-opt').forEach(o => {
+            o.style.background = '#1a1a1a';
+            o.style.border = '1px solid transparent';
+            o.querySelector('.dur-time').style.color = '#555';
+            o.querySelector('.dur-price').style.color = '#444';
+            o.querySelector('.dur-price').style.opacity = '1';
+          });
+          el.style.background = 'rgba(255,107,0,0.15)';
+          el.style.border = '1px solid var(--orange)';
+          el.querySelector('.dur-time').style.color = 'var(--orange)';
+          el.querySelector('.dur-price').style.color = 'var(--orange)';
+          el.querySelector('.dur-price').style.opacity = '0.7';
+          selectedDur = el.dataset.dur;
+          updateBookBtn();
+        }
+      </script>
     </div>
   </div>
 </section>
@@ -1423,6 +1964,114 @@
       </svg>
       <div class="step-title">Go Live Worldwide</div>
       <div class="step-desc">A wide-angle arena camera streams your session live to YouTube or Twitch — building your audience as you work.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM LOGIN — PRESENTATION MOCKUP -->
+<section id="platform" style="background: var(--dark2); padding: 120px 8vw;">
+  <div class="section-label">Platform Experience</div>
+  <h2 class="section-title reveal">INSTANT<br>ACCESS</h2>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px; align-items: center;">
+
+    <!-- Left: description -->
+    <div class="reveal">
+      <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 24px;">
+        RC World uses <strong style="color:var(--orange);">one-click Google Sign-In</strong> — no forms, no passwords, no friction. Players go from landing page to live machine in under 60 seconds.
+      </p>
+      <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 40px;">
+        Unused session minutes are <strong style="color:var(--orange);">automatically rolled over</strong> to the next session — so customers never feel they've lost money, and are more willing to book longer sessions.
+      </p>
+
+      <!-- Feature pills -->
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="display:flex; align-items:center; gap:16px; padding:16px 20px; background:var(--dark3); border-left:3px solid var(--orange);">
+          <span style="font-size:1.3rem;">⚡</span>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.95rem; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:3px;">Zero-Friction Onboarding</div>
+            <div style="font-size:0.8rem; color:rgba(255,255,255,0.45);">Google OAuth — one click, instant account, immediate access</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding:16px 20px; background:var(--dark3); border-left:3px solid var(--orange);">
+          <span style="font-size:1.3rem;">⏱</span>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.95rem; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:3px;">Rollover Minutes</div>
+            <div style="font-size:0.8rem; color:rgba(255,255,255,0.45);">Unused paid time never expires — carries forward automatically</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding:16px 20px; background:var(--dark3); border-left:3px solid var(--orange);">
+          <span style="font-size:1.3rem;">🏆</span>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.95rem; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:3px;">Session History & Leaderboard</div>
+            <div style="font-size:0.8rem; color:rgba(255,255,255,0.45);">Full stats, clip archive, and global rankings tied to your account</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: sign-in screen mockup -->
+    <div class="reveal" style="display:flex; justify-content:center;">
+      <div style="
+        background:#0d0d0d;
+        border:1px solid rgba(255,107,0,0.2);
+        width:100%;
+        max-width:380px;
+        border-radius:4px;
+        overflow:hidden;
+        box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,107,0,0.06);
+        position:relative;
+      ">
+        <!-- Mockup top bar -->
+        <div style="background:#141414; padding:10px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid rgba(255,255,255,0.05);">
+          <div style="width:9px;height:9px;border-radius:50%;background:#ff5f57;"></div>
+          <div style="width:9px;height:9px;border-radius:50%;background:#febc2e;"></div>
+          <div style="width:9px;height:9px;border-radius:50%;background:#28c840;"></div>
+          <div style="flex:1;background:#1e1e1e;border-radius:3px;padding:4px 12px;margin-left:8px;font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;color:#444;letter-spacing:0.1em;">rcworld.io/login</div>
+        </div>
+
+        <!-- Content -->
+        <div style="padding:36px 32px;">
+          <!-- Logo -->
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.05em;margin-bottom:2px;">RC<span style="color:var(--orange);">WORLD</span></div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gray);margin-bottom:28px;">Remote Machinery Experience</div>
+
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px;">Sign in to start digging</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.4);line-height:1.6;margin-bottom:24px;">
+            Instant access. Your unused minutes <span style="color:var(--orange);font-weight:600;">never expire.</span>
+          </div>
+
+          <!-- Google button (static mockup) -->
+          <div style="
+            display:flex; align-items:center; justify-content:center; gap:12px;
+            background:#fff; color:#333;
+            padding:13px 20px;
+            font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.95rem; letter-spacing:0.08em; text-transform:uppercase;
+            border-radius:2px; margin-bottom:20px;
+            box-shadow:0 2px 12px rgba(0,0,0,0.4);
+            cursor:default;
+          ">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            Continue with Google
+          </div>
+
+          <!-- Perks -->
+          <div style="display:flex;flex-direction:column;gap:10px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);">
+            <div style="display:flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.4);">
+              <div style="width:26px;height:26px;background:rgba(255,107,0,0.1);border:1px solid rgba(255,107,0,0.2);display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;">⏱</div>
+              Unused minutes roll over automatically
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.4);">
+              <div style="width:26px;height:26px;background:rgba(255,107,0,0.1);border:1px solid rgba(255,107,0,0.2);display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;">🎥</div>
+              Auto-save your best moment clips
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.4);">
+              <div style="width:26px;height:26px;background:rgba(255,107,0,0.1);border:1px solid rgba(255,107,0,0.2);display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;">🏆</div>
+              Leaderboard ranking & session history
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1722,12 +2371,6 @@
       <div class="price-tier">Starter</div>
       <div class="price-amount">$15</div>
       <div class="price-duration">30 Minutes</div>
-      <ul class="price-features">
-        <li>Any machine of your choice</li>
-        <li>3 camera angles</li>
-        <li>Session recorded</li>
-        <li>Basic control interface</li>
-      </ul>
       <a href="#" class="price-cta">Book Now</a>
     </div>
     <div class="price-card featured reveal">
@@ -1735,27 +2378,12 @@
       <div class="price-tier">Standard</div>
       <div class="price-amount">$30</div>
       <div class="price-duration">1 Hour</div>
-      <ul class="price-features">
-        <li>Any machine of your choice</li>
-        <li>3 camera angles</li>
-        <li>Session recorded + download</li>
-        <li>Live Twitch / YouTube stream</li>
-        <li>Priority queue booking</li>
-      </ul>
       <a href="#" class="price-cta">Book 1 Hour</a>
     </div>
     <div class="price-card reveal">
       <div class="price-tier">Extended</div>
       <div class="price-amount">$55</div>
       <div class="price-duration">2 Hours</div>
-      <ul class="price-features">
-        <li>Any machine of your choice</li>
-        <li>3 camera angles</li>
-        <li>Session recorded + download</li>
-        <li>Live Twitch / YouTube stream</li>
-        <li>Priority queue booking</li>
-        <li>Switch machines mid-session</li>
-      </ul>
       <a href="#" class="price-cta">Book 2 Hours</a>
     </div>
   </div>
@@ -1876,9 +2504,138 @@
   </div>
 </section>
 
+<!-- VIRAL MOMENTS -->
+<section id="viral">
+  <div class="viral-bg-text">SHARE</div>
+  <div class="section-label">Social Virality</div>
+  <h2 class="section-title reveal">YOUR MOMENT.<br>THE WORLD WATCHES.</h2>
+
+  <div class="viral-layout">
+    <!-- Share card mockup -->
+    <div class="viral-mockup reveal">
+      <div class="share-card">
+        <div class="share-card-video">
+          <!-- Animated excavator scene -->
+          <svg width="100%" viewBox="0 0 280 450" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
+            <rect width="280" height="450" fill="#080808"/>
+            <rect y="340" width="280" height="110" fill="#121208"/>
+            <!-- Ground dirt marks -->
+            <ellipse cx="140" cy="345" rx="110" ry="18" fill="#1a1208"/>
+            <ellipse cx="90" cy="348" rx="50" ry="10" fill="#1f1508"/>
+            <!-- Body -->
+            <rect x="50" y="250" width="150" height="80" rx="6" fill="#CC5500"/>
+            <rect x="60" y="260" width="130" height="60" rx="4" fill="#FF6B00"/>
+            <!-- Cab -->
+            <rect x="80" y="190" width="100" height="72" rx="5" fill="#FF6B00"/>
+            <rect x="88" y="198" width="84" height="52" rx="3" fill="rgba(0,200,255,0.15)" stroke="rgba(0,200,255,0.4)" stroke-width="1"/>
+            <!-- Counterweight -->
+            <rect x="32" y="258" width="24" height="56" rx="3" fill="#AA4400"/>
+            <!-- Boom -->
+            <rect x="148" y="130" width="14" height="110" rx="7" fill="#CC5500" transform="rotate(-28 148 130)"/>
+            <!-- Stick with animation -->
+            <rect x="218" y="105" width="10" height="95" rx="5" fill="#FF6B00" transform="rotate(18 218 105)">
+              <animateTransform attributeName="transform" type="rotate" values="18 218 105;28 218 105;18 218 105" dur="3s" repeatCount="indefinite"/>
+            </rect>
+            <!-- Bucket -->
+            <path d="M260 200 L285 193 L292 218 L268 228 L248 222 Z" fill="#333" stroke="#555" stroke-width="1.5">
+              <animateTransform attributeName="transform" type="translate" values="0,0;0,15;0,0" dur="3s" repeatCount="indefinite"/>
+            </path>
+            <!-- Tracks -->
+            <rect x="30" y="320" width="220" height="42" rx="21" fill="#1a1a1a"/>
+            <circle cx="60" cy="341" r="18" fill="#222" stroke="#333" stroke-width="1.5"/>
+            <circle cx="220" cy="341" r="18" fill="#222" stroke="#333" stroke-width="1.5"/>
+            <circle cx="140" cy="341" r="13" fill="#222" stroke="#333" stroke-width="1.5"/>
+            <!-- Glow -->
+            <ellipse cx="140" cy="360" rx="90" ry="6" fill="rgba(255,107,0,0.2)"/>
+            <!-- Dust particles -->
+            <circle cx="260" cy="310" r="3" fill="rgba(200,150,80,0.4)">
+              <animate attributeName="r" values="3;9;3" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- HUD timer -->
+            <rect x="12" y="395" width="70" height="22" rx="3" fill="rgba(255,107,0,0.15)" stroke="rgba(255,107,0,0.4)" stroke-width="1"/>
+            <text x="20" y="410" font-family="monospace" font-size="10" fill="#FF6B00">⏱ 28:44</text>
+            <!-- Cam indicator -->
+            <circle cx="262" cy="406" r="5" fill="red"><animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/></circle>
+            <text x="240" y="410" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.5)">REC</text>
+          </svg>
+
+          <!-- Winner overlay -->
+          <div class="share-winner-banner" style="z-index:2;">
+            <div class="winner-text">BUCKET MASTER!</div>
+            <div class="winner-sub">🏆 New Personal Record</div>
+          </div>
+
+          <!-- Confetti elements -->
+          <div class="confetti-el" style="left:20%;top:-10px;animation-duration:2.1s;animation-delay:0s;color:#FF6B00;font-size:1rem;">★</div>
+          <div class="confetti-el" style="left:50%;top:-10px;animation-duration:1.8s;animation-delay:0.4s;color:#FFD000;font-size:0.8rem;">◆</div>
+          <div class="confetti-el" style="left:75%;top:-10px;animation-duration:2.4s;animation-delay:0.8s;color:#FF6B00;font-size:0.7rem;">●</div>
+          <div class="confetti-el" style="left:35%;top:-10px;animation-duration:1.6s;animation-delay:1.2s;color:#fff;font-size:0.6rem;">✦</div>
+
+          <!-- Share buttons overlay -->
+          <div class="share-btns" style="position:absolute;right:12px;bottom:60px;gap:6px;display:flex;flex-direction:column;">
+            <button class="share-btn-sm share-btn-tiktok" style="border-radius:4px;">
+              <span style="font-size:1rem;">📱</span> TikTok
+            </button>
+            <button class="share-btn-sm share-btn-reels" style="border-radius:4px;">
+              <span style="font-size:1rem;">📸</span> Reels
+            </button>
+            <button class="share-btn-sm share-btn-yt" style="border-radius:4px;">
+              <span style="font-size:1rem;">▶</span> Shorts
+            </button>
+          </div>
+        </div>
+        <div class="share-card-bottom">
+          <div class="share-avatar">DK</div>
+          <div class="share-info">
+            <div class="share-username">@dk_operator</div>
+            <div class="share-caption">Just dug my first trench on RC World 🔥 #rcworld</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="viral-features reveal">
+      <div class="viral-feat">
+        <div class="viral-feat-icon">🏆</div>
+        <div>
+          <div class="viral-feat-title">Auto-Clip Your Best Moments</div>
+          <div class="viral-feat-desc">Like PUBG's Chicken Dinner or Warzone kill streaks — RC World auto-captures your best digs, fills, and precision moves as a shareable vertical video clip.</div>
+        </div>
+      </div>
+      <div class="viral-feat">
+        <div class="viral-feat-icon">📲</div>
+        <div>
+          <div class="viral-feat-title">One-Tap Share to TikTok, Reels & Shorts</div>
+          <div class="viral-feat-desc">Every session ends with a highlight reel ready to post. Real machinery operating in real-time is inherently viral content — no editing required.</div>
+        </div>
+      </div>
+      <div class="viral-feat">
+        <div class="viral-feat-icon">🎯</div>
+        <div>
+          <div class="viral-feat-title">Players Become Your Marketing</div>
+          <div class="viral-feat-desc">Every share is an organic ad. Viewers see real heavy machinery controlled remotely, get curious, and become your next customer — zero ad spend required.</div>
+        </div>
+      </div>
+      <div class="viral-feat">
+        <div class="viral-feat-icon">📊</div>
+        <div>
+          <div class="viral-feat-title">Leaderboards & Challenge Clips</div>
+          <div class="viral-feat-desc">Weekly speed challenges, precision contests, and leaderboard moments are auto-packaged as shareable content — creating recurring viral cycles.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- INVESTMENT -->
 <section id="investment">
   <div class="section-label">Budget Breakdown</div>
+  <div class="patent-badge">
+    <div class="patent-dot"></div>
+    Patent Application Filed · Remote Machinery Entertainment Platform · 2025
+  </div>
   <h2 class="section-title reveal">THE<br>NUMBERS</h2>
 
   <div class="invest-grid">
@@ -1938,25 +2695,55 @@
     </div>
 
     <div class="invest-projections reveal">
-      <h3 style="font-family: 'Barlow Condensed'; font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px;">Revenue Projections</h3>
-      <div class="projection-card">
-        <div class="projection-label">Daily Revenue Potential</div>
-        <div class="projection-value">$360+</div>
-        <div class="projection-note">12 hrs × $30/hr × avg machine utilization</div>
+      <h3 style="font-family: 'Barlow Condensed'; font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-bottom: 20px;">Revenue Projections</h3>
+
+      <!-- Interactive Revenue Calculator -->
+      <div class="revenue-calc">
+        <div class="calc-title">Live Revenue Calculator</div>
+
+        <div class="calc-row">
+          <div class="calc-label">Machines in fleet</div>
+          <div class="calc-slider-wrap">
+            <input type="range" class="calc-slider" id="sliderMachines" min="1" max="11" value="5" oninput="updateCalc()">
+            <div class="calc-slider-val" id="valMachines">5</div>
+          </div>
+        </div>
+
+        <div class="calc-row">
+          <div class="calc-label">Active hours / machine / day</div>
+          <div class="calc-slider-wrap">
+            <input type="range" class="calc-slider" id="sliderHours" min="1" max="24" value="8" oninput="updateCalc()">
+            <div class="calc-slider-val" id="valHours">8</div>
+          </div>
+        </div>
+
+        <div class="calc-row">
+          <div class="calc-label">Avg. session rate</div>
+          <div class="calc-slider-wrap">
+            <input type="range" class="calc-slider" id="sliderRate" min="15" max="60" value="25" step="5" oninput="updateCalc()">
+            <div class="calc-slider-val" id="valRate">$25</div>
+          </div>
+        </div>
+
+        <div class="calc-row" style="padding-top:14px; margin-top:6px; border-top: 1px solid rgba(255,255,255,0.06);">
+          <div class="calc-label">Daily revenue</div>
+          <div class="calc-value" id="calcDaily">$1,000</div>
+        </div>
+        <div class="calc-row">
+          <div class="calc-label">Monthly revenue</div>
+          <div class="calc-value" id="calcMonthly">$30,000</div>
+        </div>
+
+        <div class="calc-total-row">
+          <div class="calc-total-label">Break-even estimate</div>
+          <div class="calc-total-value" id="calcBreakeven">~10 days</div>
+        </div>
+        <div class="projection-formula" id="calcFormula">$25/hr × 8h × 5 machines = $1,000/day</div>
       </div>
-      <div class="projection-card">
-        <div class="projection-label">Monthly Revenue Target</div>
-        <div class="projection-value">$8,000+</div>
-        <div class="projection-note">Sessions + streaming ad revenue</div>
-      </div>
-      <div class="projection-card">
-        <div class="projection-label">Estimated Break-Even</div>
-        <div class="projection-value">~45 Days</div>
-        <div class="projection-note">Based on 60% fleet utilization rate</div>
-      </div>
-      <div style="padding: 20px; background: rgba(255,107,0,0.06); border: 1px solid rgba(255,107,0,0.15); border-radius: 2px;">
-        <div style="font-family: 'Barlow Condensed'; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 8px;">Upside Potential</div>
-        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">Streaming revenue, brand sponsorships, gifting during live sessions, tournaments, and fleet expansion multiply income with zero additional infrastructure cost.</div>
+
+      <div style="padding: 20px; background: rgba(255,107,0,0.06); border: 1px solid rgba(255,107,0,0.15); border-radius: 2px; margin-top: 16px;">
+        <div style="font-family: 'Barlow Condensed'; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 8px;">+ Streaming Upside</div>
+        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">Streaming ad revenue, brand sponsorships, gifting, tournaments, and viral share-driven organic bookings multiply income with zero additional infrastructure cost.</div>
       </div>
     </div>
   </div>
@@ -1975,6 +2762,483 @@
   <div class="footer-copy">© 2025 RC World — Remote Machinery Experience Platform</div>
   <div class="footer-copy" style="color: var(--orange);">rcworld.io</div>
 </footer>
+
+<!-- ===== DEMO MODAL ===== -->
+<div id="demoModal" style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,0.92); align-items:center; justify-content:center;">
+  <div style="position:relative; width:min(900px,95vw); background:#0a0a0a; border:1px solid rgba(255,107,0,0.3); box-shadow:0 0 80px rgba(255,107,0,0.15);">
+    <!-- Modal Header -->
+    <div style="display:flex; justify-content:space-between; align-items:center; padding:14px 20px; border-bottom:1px solid rgba(255,107,0,0.2); background:#111;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div style="width:8px;height:8px;background:red;border-radius:50%;animation:recBlink 1s ease-in-out infinite;"></div>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spacing:0.2em;color:rgba(255,255,255,0.6);text-transform:uppercase;">RC WORLD · LIVE DEMO · DUMP TRUCK</span>
+      </div>
+      <button onclick="closeDemo()" style="background:none;border:none;color:#888;font-size:1.4rem;cursor:pointer;line-height:1;padding:4px 8px;" onmouseenter="this.style.color='#FF6B00'" onmouseleave="this.style.color='#888'">✕</button>
+    </div>
+
+    <!-- Game Canvas Area -->
+    <div style="position:relative; background:#0d0d0d;">
+      <canvas id="demoCanvas" width="900" height="480" style="display:block; width:100%; image-rendering:pixelated;"></canvas>
+      <!-- Camera Overlay Buttons -->
+      <div id="camOverlay" style="position:absolute; bottom:12px; left:50%; transform:translateX(-50%); display:flex; gap:6px; z-index:10;">
+        <button class="demo-cam-btn active" data-cam="top" onclick="setCamera('top',this)">1 · TEPE</button>
+        <button class="demo-cam-btn" data-cam="right" onclick="setCamera('right',this)">2 · SAĞ</button>
+        <button class="demo-cam-btn" data-cam="left" onclick="setCamera('left',this)">3 · SOL</button>
+      </div>
+      <!-- Camera Label -->
+      <div id="camLabel" style="position:absolute;top:12px;left:12px;font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.2em;color:rgba(255,107,0,0.8);text-transform:uppercase;background:rgba(0,0,0,0.5);padding:4px 10px;border:1px solid rgba(255,107,0,0.2);">📷 TEPE KAMERASI</div>
+      <!-- Damper status -->
+      <div id="damperLabel" style="position:absolute;top:12px;right:12px;font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.15em;color:rgba(255,255,255,0.6);text-transform:uppercase;background:rgba(0,0,0,0.5);padding:4px 10px;border:1px solid rgba(255,255,255,0.1);">DAMPER: KAPALI</div>
+    </div>
+
+    <!-- Controls Panel -->
+    <div style="padding:12px 16px; border-top:1px solid rgba(255,255,255,0.06); background:#0f0f0f; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+
+      <!-- D-Pad: touch + keyboard -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.2em;color:#555;text-transform:uppercase;margin-bottom:4px;">HAREKET</div>
+        <div style="display:grid;grid-template-columns:repeat(3,48px);grid-template-rows:repeat(2,48px);gap:4px;">
+          <div></div>
+          <div id="k-up" class="demo-key touch-btn"
+            ontouchstart="touchKey('ArrowUp',true,this)" ontouchend="touchKey('ArrowUp',false,this)"
+            onmousedown="touchKey('ArrowUp',true,this)" onmouseup="touchKey('ArrowUp',false,this)" onmouseleave="touchKey('ArrowUp',false,this)">↑</div>
+          <div></div>
+          <div id="k-left" class="demo-key touch-btn"
+            ontouchstart="touchKey('ArrowLeft',true,this)" ontouchend="touchKey('ArrowLeft',false,this)"
+            onmousedown="touchKey('ArrowLeft',true,this)" onmouseup="touchKey('ArrowLeft',false,this)" onmouseleave="touchKey('ArrowLeft',false,this)">←</div>
+          <div id="k-down" class="demo-key touch-btn"
+            ontouchstart="touchKey('ArrowDown',true,this)" ontouchend="touchKey('ArrowDown',false,this)"
+            onmousedown="touchKey('ArrowDown',true,this)" onmouseup="touchKey('ArrowDown',false,this)" onmouseleave="touchKey('ArrowDown',false,this)">↓</div>
+          <div id="k-right" class="demo-key touch-btn"
+            ontouchstart="touchKey('ArrowRight',true,this)" ontouchend="touchKey('ArrowRight',false,this)"
+            onmousedown="touchKey('ArrowRight',true,this)" onmouseup="touchKey('ArrowRight',false,this)" onmouseleave="touchKey('ArrowRight',false,this)">→</div>
+        </div>
+      </div>
+
+      <!-- Damper buttons -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.2em;color:#555;text-transform:uppercase;margin-bottom:4px;">DAMPER</div>
+        <button class="demo-action-btn touch-btn" style="padding:14px 20px;font-size:0.85rem;"
+          ontouchstart="triggerDamper('up')" onmousedown="triggerDamper('up')">▲ KALDIR</button>
+        <button class="demo-action-btn touch-btn" style="padding:14px 20px;font-size:0.85rem;"
+          ontouchstart="triggerDamper('down')" onmousedown="triggerDamper('down')">▼ İNDİR</button>
+      </div>
+
+      <!-- Camera buttons -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.2em;color:#555;text-transform:uppercase;margin-bottom:4px;">KAMERA</div>
+        <button class="demo-cam-btn-sm touch-btn" style="width:52px;height:52px;font-size:1rem;" onclick="setCamera('top',null)">1<br><span style="font-size:0.5rem;opacity:0.6;">TEPE</span></button>
+        <button class="demo-cam-btn-sm touch-btn" style="width:52px;height:52px;font-size:1rem;" onclick="setCamera('right',null)">2<br><span style="font-size:0.5rem;opacity:0.6;">SAĞ</span></button>
+        <button class="demo-cam-btn-sm touch-btn" style="width:52px;height:52px;font-size:1rem;" onclick="setCamera('left',null)">3<br><span style="font-size:0.5rem;opacity:0.6;">SOL</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.demo-cam-btn {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+  padding:6px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.2s;
+}
+.demo-cam-btn.active, .demo-cam-btn:hover { background:var(--orange);color:#0a0a0a;border-color:var(--orange); }
+.demo-cam-btn-sm {
+  font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;font-weight:700;
+  width:30px;height:30px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.2s;
+}
+.demo-cam-btn-sm:hover { background:var(--orange);color:#0a0a0a; }
+.demo-key {
+  width:48px;height:48px;display:flex;align-items:center;justify-content:center;
+  background:#1a1a1a;border:1px solid rgba(255,255,255,0.15);border-bottom:3px solid rgba(255,255,255,0.1);
+  font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;color:#888;border-radius:4px;
+  transition:all 0.1s;user-select:none;-webkit-user-select:none;touch-action:manipulation;
+}
+.demo-key.pressed { background:rgba(255,107,0,0.2);border-color:var(--orange);color:var(--orange);transform:translateY(1px); }
+.touch-btn { touch-action:manipulation; -webkit-tap-highlight-color:transparent; user-select:none; -webkit-user-select:none; }
+.demo-action-btn {
+  font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;padding:8px 16px;background:#1a1a1a;border:1px solid rgba(255,255,255,0.15);
+  color:#888;cursor:pointer;transition:all 0.2s;
+}
+.demo-action-btn:hover { background:rgba(255,107,0,0.15);border-color:var(--orange);color:var(--orange); }
+</style>
+
+<script>
+// ===== DEMO GAME ENGINE =====
+const demoState = {
+  open: false,
+  camera: 'top',
+  truck: { x: 450, y: 300, angle: 0, speed: 0, maxSpeed: 3, damper: 0, damperTarget: 0 },
+  keys: {},
+  animFrame: null,
+  dustParticles: [],
+  gridOffset: 0
+};
+
+function openDemo() {
+  const modal = document.getElementById('demoModal');
+  modal.style.display = 'flex';
+  demoState.open = true;
+  document.body.style.overflow = 'hidden';
+  // Prevent page scroll when touching inside modal
+  modal.addEventListener('touchmove', function(e){ e.stopPropagation(); }, {passive:true});
+  startDemoLoop();
+  window.addEventListener('keydown', demoBtnDown);
+  window.addEventListener('keyup', demoBtnUp);
+}
+
+function closeDemo() {
+  const modal = document.getElementById('demoModal');
+  modal.style.display = 'none';
+  demoState.open = false;
+  document.body.style.overflow = '';
+  cancelAnimationFrame(demoState.animFrame);
+  window.removeEventListener('keydown', demoBtnDown);
+  window.removeEventListener('keyup', demoBtnUp);
+}
+
+function touchKey(key, isDown, el) {
+  // prevent ghost click / scroll
+  if (isDown) {
+    demoState.keys[key] = true;
+    el && el.classList.add('pressed');
+  } else {
+    demoState.keys[key] = false;
+    el && el.classList.remove('pressed');
+  }
+}
+
+function demoBtnDown(e) {
+  demoState.keys[e.key] = true;
+  const kmap = {'ArrowUp':'k-up','ArrowDown':'k-down','ArrowLeft':'k-left','ArrowRight':'k-right'};
+  if (kmap[e.key]) document.getElementById(kmap[e.key])?.classList.add('pressed');
+  if (e.key === 'w' || e.key === 'W') triggerDamper('up');
+  if (e.key === 's' || e.key === 'S') triggerDamper('down');
+  if (e.key === '1') setCamera('top', null);
+  if (e.key === '2') setCamera('right', null);
+  if (e.key === '3') setCamera('left', null);
+  if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) e.preventDefault();
+}
+
+function demoBtnUp(e) {
+  demoState.keys[e.key] = false;
+  const kmap = {'ArrowUp':'k-up','ArrowDown':'k-down','ArrowLeft':'k-left','ArrowRight':'k-right'};
+  if (kmap[e.key]) document.getElementById(kmap[e.key])?.classList.remove('pressed');
+}
+
+function triggerDamper(dir) {
+  if (dir === 'up') { demoState.truck.damperTarget = 1; }
+  else { demoState.truck.damperTarget = 0; }
+  updateDamperLabel();
+}
+
+function updateDamperLabel() {
+  const el = document.getElementById('damperLabel');
+  if (el) el.textContent = 'DAMPER: ' + (demoState.truck.damperTarget > 0.5 ? 'AÇIK ▲' : 'KAPALI');
+  el.style.color = demoState.truck.damperTarget > 0.5 ? 'rgba(255,107,0,0.9)' : 'rgba(255,255,255,0.6)';
+}
+
+function setCamera(cam, btnEl) {
+  demoState.camera = cam;
+  const labels = { top:'📷 TEPE KAMERASI', right:'📷 SAĞ KAMERA', left:'📷 SOL KAMERA' };
+  const el = document.getElementById('camLabel');
+  if (el) el.textContent = labels[cam];
+  // Update overlay buttons
+  document.querySelectorAll('.demo-cam-btn[data-cam]').forEach(b => b.classList.remove('active'));
+  const active = document.querySelector('.demo-cam-btn[data-cam="'+cam+'"]');
+  if (active) active.classList.add('active');
+}
+
+function startDemoLoop() {
+  const canvas = document.getElementById('demoCanvas');
+  const ctx = canvas.getContext('2d');
+  
+  function loop() {
+    if (!demoState.open) return;
+    updateTruck();
+    renderScene(ctx, canvas);
+    demoState.animFrame = requestAnimationFrame(loop);
+  }
+  loop();
+}
+
+function updateTruck() {
+  const t = demoState.truck;
+  const keys = demoState.keys;
+  
+  // Steering
+  if (keys['ArrowLeft']) t.angle -= 0.04 * (Math.abs(t.speed) / t.maxSpeed + 0.3);
+  if (keys['ArrowRight']) t.angle += 0.04 * (Math.abs(t.speed) / t.maxSpeed + 0.3);
+  
+  // Acceleration
+  if (keys['ArrowUp']) t.speed = Math.min(t.speed + 0.15, t.maxSpeed);
+  else if (keys['ArrowDown']) t.speed = Math.max(t.speed - 0.15, -t.maxSpeed * 0.6);
+  else t.speed *= 0.92; // friction
+  
+  // Move
+  t.x += Math.sin(t.angle) * t.speed;
+  t.y -= Math.cos(t.angle) * t.speed;
+  
+  // Boundary wrap
+  t.x = ((t.x % 900) + 900) % 900;
+  t.y = ((t.y % 480) + 480) % 480;
+  
+  // Damper animation
+  t.damper += (t.damperTarget - t.damper) * 0.06;
+  
+  // Dust particles
+  if (Math.abs(t.speed) > 0.5 && Math.random() < 0.3) {
+    demoState.dustParticles.push({
+      x: t.x - Math.sin(t.angle) * 28 + (Math.random()-0.5)*8,
+      y: t.y + Math.cos(t.angle) * 28 + (Math.random()-0.5)*8,
+      life: 1, r: Math.random()*8+4, vx:(Math.random()-0.5)*0.5, vy:(Math.random()-0.5)*0.5
+    });
+  }
+  demoState.dustParticles = demoState.dustParticles
+    .map(p => ({...p, life:p.life-0.03, x:p.x+p.vx, y:p.y+p.vy}))
+    .filter(p => p.life > 0);
+  
+  demoState.gridOffset = (demoState.gridOffset + Math.abs(t.speed) * 0.5) % 40;
+}
+
+function renderScene(ctx, canvas) {
+  const W = canvas.width, H = canvas.height;
+  const t = demoState.truck;
+  const cam = demoState.camera;
+  
+  ctx.clearRect(0, 0, W, H);
+  
+  // Camera transform
+  ctx.save();
+  
+  let camOffX = 0, camOffY = 0, camSkewX = 0, camSkewY = 0;
+  
+  if (cam === 'top') {
+    // Straight top-down, slight follow
+    camOffX = W/2 - t.x;
+    camOffY = H/2 - t.y;
+  } else if (cam === 'right') {
+    // Right side: perspective shift
+    camOffX = W/2 - t.x + 60;
+    camOffY = H/2 - t.y + 30;
+  } else {
+    // Left side
+    camOffX = W/2 - t.x - 60;
+    camOffY = H/2 - t.y + 30;
+  }
+  
+  // Background: dirt arena
+  ctx.fillStyle = '#1a1208';
+  ctx.fillRect(0, 0, W, H);
+  
+  // Grid ground texture
+  ctx.save();
+  ctx.translate(camOffX, camOffY);
+  
+  // Dirt patches
+  const patches = [
+    {x:200,y:150,r:80,c:'rgba(100,60,10,0.4)'},{x:500,y:300,r:100,c:'rgba(80,50,8,0.35)'},
+    {x:700,y:150,r:60,c:'rgba(110,65,12,0.3)'},{x:350,y:380,r:90,c:'rgba(90,55,9,0.38)'},
+    {x:100,y:350,r:70,c:'rgba(95,58,10,0.32)'}
+  ];
+  patches.forEach(p => {
+    const gr = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);
+    gr.addColorStop(0,p.c); gr.addColorStop(1,'transparent');
+    ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+  });
+  
+  // Grid lines
+  ctx.strokeStyle = 'rgba(255,107,0,0.04)';
+  ctx.lineWidth = 1;
+  for (let gx = -40; gx < W+40; gx += 40) {
+    ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke();
+  }
+  for (let gy = -40; gy < H+40; gy += 40) {
+    ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke();
+  }
+  
+  // Arena boundary
+  ctx.strokeStyle = 'rgba(255,107,0,0.25)';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(20, 20, W-40, H-40);
+  ctx.strokeStyle = 'rgba(255,107,0,0.08)';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(10, 10, W-20, H-20);
+  
+  // Corner markers
+  [[20,20],[W-20,20],[20,H-20],[W-20,H-20]].forEach(([cx,cy]) => {
+    ctx.fillStyle = 'rgba(255,107,0,0.4)';
+    ctx.beginPath(); ctx.arc(cx,cy,6,0,Math.PI*2); ctx.fill();
+  });
+  
+  // Obstacles: rocks/dirt piles
+  const obstacles = [
+    {x:150,y:100,w:50,h:30},{x:680,y:350,w:60,h:35},{x:400,y:80,w:40,h:25},{x:200,y:400,w:55,h:30}
+  ];
+  obstacles.forEach(o => {
+    ctx.fillStyle = '#2a1a08';
+    ctx.beginPath();
+    ctx.ellipse(o.x, o.y, o.w, o.h, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle = '#3a2510';
+    ctx.beginPath();
+    ctx.ellipse(o.x-5, o.y-8, o.w*0.7, o.h*0.7, 0, 0, Math.PI*2);
+    ctx.fill();
+    // Rock shine
+    ctx.fillStyle = 'rgba(255,200,100,0.05)';
+    ctx.beginPath();
+    ctx.ellipse(o.x-10, o.y-12, o.w*0.3, o.h*0.3, -0.5, 0, Math.PI*2);
+    ctx.fill();
+  });
+  
+  // Dust particles
+  demoState.dustParticles.forEach(p => {
+    ctx.globalAlpha = p.life * 0.4;
+    ctx.fillStyle = '#c8a060';
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+    ctx.globalAlpha = 1;
+  });
+  
+  // ===== DRAW DUMP TRUCK =====
+  ctx.save();
+  ctx.translate(t.x, t.y);
+  
+  // Camera angle adjustments
+  let scaleY = 1;
+  if (cam === 'right') { ctx.scale(1, 0.75); ctx.translate(15, 0); }
+  if (cam === 'left') { ctx.scale(1, 0.75); ctx.translate(-15, 0); }
+  
+  ctx.rotate(t.angle);
+  
+  const damperAngle = t.damper * -0.65; // tilt back when raised
+  
+  // Shadow
+  ctx.save();
+  ctx.scale(1 + t.damper*0.1, 0.3);
+  ctx.fillStyle = 'rgba(0,0,0,0.4)';
+  ctx.beginPath(); ctx.ellipse(0, 80, 42, 22, 0, 0, Math.PI*2); ctx.fill();
+  ctx.restore();
+  
+  // --- WHEELS ---
+  const wheels = [[-22,-30],[22,-30],[-24,20],[24,20]];
+  wheels.forEach(([wx, wy]) => {
+    ctx.save(); ctx.translate(wx, wy);
+    // Wheel rotation based on speed
+    ctx.fillStyle = '#222'; ctx.beginPath(); ctx.arc(0,0,11,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#444'; ctx.lineWidth=2; ctx.stroke();
+    ctx.fillStyle = '#333'; ctx.beginPath(); ctx.arc(0,0,6,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#555'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(0,-10); ctx.lineTo(0,10); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-10,0); ctx.lineTo(10,0); ctx.stroke();
+    ctx.restore();
+  });
+  
+  // --- CHASSIS ---
+  ctx.fillStyle = '#CC5500';
+  ctx.fillRect(-28, -45, 56, 90);
+  
+  // --- CABIN ---
+  ctx.fillStyle = '#FF6B00';
+  ctx.fillRect(-20, -45, 42, 40);
+  // Cabin details
+  ctx.fillStyle = 'rgba(0,200,255,0.2)';
+  ctx.fillRect(-16,-41,18,14);
+  ctx.fillRect(6,-41,14,14);
+  ctx.strokeStyle='rgba(0,200,255,0.4)'; ctx.lineWidth=0.5;
+  ctx.strokeRect(-16,-41,18,14); ctx.strokeRect(6,-41,14,14);
+  // Cabin roof light
+  ctx.fillStyle='#FFD000';
+  ctx.fillRect(-6,-50,12,6);
+  
+  // --- DUMP BED ---
+  ctx.save();
+  ctx.translate(0, 15); // pivot point at rear of cab
+  ctx.rotate(damperAngle);
+  
+  // Bed frame
+  ctx.fillStyle = '#AA4400';
+  ctx.fillRect(-24, -10, 48, 55);
+  ctx.fillStyle = '#CC5500';
+  ctx.fillRect(-22, -8, 44, 50);
+  
+  // Cargo (dirt)
+  if (t.damper < 0.5) {
+    ctx.fillStyle = '#7a4a18';
+    ctx.beginPath();
+    ctx.moveTo(-20, -6); ctx.lineTo(20, -6);
+    ctx.lineTo(18, -18); ctx.lineTo(-18, -18);
+    ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#8a5520';
+    ctx.beginPath();
+    ctx.ellipse(0, -14, 14, 5, 0, 0, Math.PI*2); ctx.fill();
+  }
+  
+  // Bed side rails
+  ctx.fillStyle = '#884400';
+  ctx.fillRect(-24, -10, 4, 55);
+  ctx.fillRect(20, -10, 4, 55);
+  // Tailgate
+  const tailH = 12 * (1 - t.damper);
+  ctx.fillStyle = '#993300';
+  ctx.fillRect(-24, 45 - tailH, 48, tailH);
+  
+  // Falling dirt when raised
+  if (t.damper > 0.3) {
+    const a = t.damper - 0.3;
+    ctx.fillStyle = `rgba(120,70,20,${a*0.8})`;
+    for (let i = 0; i < 5; i++) {
+      ctx.beginPath();
+      ctx.arc(-15+i*8, 40 + i*5*a, 3+i*a, 0, Math.PI*2); ctx.fill();
+    }
+  }
+  ctx.restore();
+  
+  // Orange RC World logo on side
+  ctx.fillStyle = 'rgba(255,107,0,0.5)';
+  ctx.font = 'bold 7px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('RC', 0, -20);
+  
+  ctx.restore(); // truck
+  
+  // HUD: speed indicator
+  const spd = Math.abs(t.speed);
+  ctx.fillStyle = 'rgba(0,0,0,0.5)';
+  ctx.fillRect(W-90, H-60, 80, 44);
+  ctx.strokeStyle = 'rgba(255,107,0,0.3)'; ctx.lineWidth=1;
+  ctx.strokeRect(W-90, H-60, 80, 44);
+  ctx.fillStyle = 'rgba(255,107,0,0.6)';
+  ctx.font = '600 10px "Barlow Condensed", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('HIZ', W-84, H-46);
+  ctx.fillStyle = '#FF6B00';
+  ctx.font = 'bold 18px "Barlow Condensed", sans-serif';
+  ctx.fillText(Math.round(spd * 33) + ' km/h', W-84, H-26);
+  
+  ctx.restore(); // camera translate
+  
+  // Scanlines overlay
+  for (let y = 0; y < H; y += 3) {
+    ctx.fillStyle = 'rgba(0,0,0,0.08)';
+    ctx.fillRect(0, y, W, 1);
+  }
+  
+  // Vignette
+  const vig = ctx.createRadialGradient(W/2,H/2,H*0.3,W/2,H/2,H*0.8);
+  vig.addColorStop(0,'transparent'); vig.addColorStop(1,'rgba(0,0,0,0.5)');
+  ctx.fillStyle = vig; ctx.fillRect(0,0,W,H);
+  
+  // Camera-specific color grading
+  if (cam === 'right') {
+    ctx.fillStyle = 'rgba(255,107,0,0.04)';
+    ctx.fillRect(0,0,W,H);
+  } else if (cam === 'left') {
+    ctx.fillStyle = 'rgba(0,100,200,0.04)';
+    ctx.fillRect(0,0,W,H);
+  }
+}
+</script>
 
 <script>
   // Custom cursor
@@ -2027,21 +3291,15 @@
 
   reveals.forEach(el => observer.observe(el));
 
-  // Camera button switcher — changes SVG scene + label
+  // Camera button switcher
   document.querySelectorAll('.cam-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const view = btn.dataset.view;
       const label = btn.dataset.label;
-
-      // Switch active button
       document.querySelectorAll('.cam-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-
-      // Switch visible scene
       document.querySelectorAll('.cam-view').forEach(v => v.classList.remove('active'));
       document.getElementById('view-' + view).classList.add('active');
-
-      // Update label text (keep the rec dot)
       const labelEl = document.getElementById('camViewLabel');
       labelEl.innerHTML = '<div class="rec-dot" style="width:8px;height:8px;background:red;border-radius:50%;animation:recBlink 1s ease-in-out infinite;display:inline-block;"></div> REC · ' + label;
     });
@@ -2061,6 +3319,30 @@
       if (target) target.scrollIntoView({ behavior: 'smooth' });
     });
   });
+
+  // ===== REVENUE CALCULATOR =====
+  function updateCalc() {
+    const machines = parseInt(document.getElementById('sliderMachines').value);
+    const hours = parseInt(document.getElementById('sliderHours').value);
+    const rate = parseInt(document.getElementById('sliderRate').value);
+
+    document.getElementById('valMachines').textContent = machines;
+    document.getElementById('valHours').textContent = hours;
+    document.getElementById('valRate').textContent = '$' + rate;
+
+    const daily = rate * hours * machines;
+    const monthly = daily * 30;
+    const breakeven = Math.ceil(10140 / daily);
+
+    document.getElementById('calcDaily').textContent = '$' + daily.toLocaleString();
+    document.getElementById('calcMonthly').textContent = '$' + monthly.toLocaleString();
+    document.getElementById('calcBreakeven').textContent = '~' + breakeven + (breakeven === 1 ? ' day' : ' days');
+    document.getElementById('calcFormula').textContent =
+      '$' + rate + '/hr × ' + hours + 'h × ' + machines + ' machine' + (machines > 1 ? 's' : '') + ' = $' + daily.toLocaleString() + '/day';
+  }
+
+  // Init calculator on load
+  updateCalc();
 </script>
 </body>
 </html>
