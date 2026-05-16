@@ -2925,7 +2925,7 @@
             <span>Daily net income</span>
             <span id="calcExpenseBreakdown" style="font-size:0.7rem;color:rgba(255,107,0,0.6);font-weight:400;letter-spacing:0.03em;">(−$100 parts, rent, maint., operating)</span>
           </div>
-          <div class="calc-value" id="calcDailyNet" style="color:#FFD000;">$900</div>
+          <div class="calc-value" id="calcDailyNet" style="color:#FFD000;">$800</div>
         </div>
         <div class="calc-row">
           <div class="calc-label">Monthly net income</div>
@@ -4112,7 +4112,7 @@ function renderScene(ctx, canvas) {
     document.getElementById('valRate').textContent = '$' + rate;
 
     const daily = rate * hours * machines;
-    const expenses = Math.round(daily * 0.10);
+    const expenses = Math.round(daily * 0.20);
     const dailyNet = daily - expenses;
     const monthly = dailyNet * 30;
     const breakeven = Math.ceil(10140 / dailyNet);
