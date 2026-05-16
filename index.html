@@ -1815,17 +1815,17 @@
           <!-- Machine selector -->
           <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--orange); text-transform: uppercase; margin-bottom: 12px;">Select Machine</div>
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 20px;" id="machineSelector">
-            <div class="machine-opt" data-machine="excavator" data-label="Excavator" onclick="selectMachine(this)"
+            <div class="machine-opt" data-machine="excavator" data-label="Excavator" onclick="selectBookingMachine(this)"
               style="background: rgba(255,107,0,0.15); border: 1px solid var(--orange); padding: 8px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s;">
               <div style="font-size: 1.4rem;">🚜</div>
               <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--orange); margin-top: 4px;">Excavator</div>
             </div>
-            <div class="machine-opt" data-machine="dumptruck" data-label="Dump Truck" onclick="selectMachine(this)"
+            <div class="machine-opt" data-machine="dumptruck" data-label="Dump Truck" onclick="selectBookingMachine(this)"
               style="background: #1a1a1a; padding: 8px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent;">
               <div style="font-size: 1.4rem;">🚛</div>
               <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.1em; color: #555; margin-top: 4px;">Dump Truck</div>
             </div>
-            <div class="machine-opt" data-machine="loader" data-label="Loader" onclick="selectMachine(this)"
+            <div class="machine-opt" data-machine="loader" data-label="Loader" onclick="selectBookingMachine(this)"
               style="background: #1a1a1a; padding: 8px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent;">
               <div style="font-size: 1.4rem;">🏗️</div>
               <div style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.6rem; letter-spacing: 0.1em; color: #555; margin-top: 4px;">Loader</div>
@@ -1847,12 +1847,12 @@
             <div class="dur-opt" data-dur="45m" onclick="selectDuration(this)"
               style="flex:1; background: #1a1a1a; padding: 10px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent;">
               <div class="dur-time" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: #555;">45m</div>
-              <div class="dur-price" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: #444; margin-top: 2px;">$35</div>
+              <div class="dur-price" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: #444; margin-top: 2px;">$40</div>
             </div>
             <div class="dur-opt" data-dur="1hr" onclick="selectDuration(this)"
               style="flex:1; background: #1a1a1a; padding: 10px; text-align: center; border-radius: 4px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent;">
               <div class="dur-time" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; color: #555;">1hr</div>
-              <div class="dur-price" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: #444; margin-top: 2px;">$45</div>
+              <div class="dur-price" style="font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; color: #444; margin-top: 2px;">$50</div>
             </div>
           </div>
           <!-- CTA -->
@@ -1866,9 +1866,9 @@
       <script>
         // Pricing data
         const prices = {
-          excavator: { '15m': 20, '30m': 30, '45m': 35, '1hr': 45 },
+          excavator: { '15m': 20, '30m': 30, '45m': 40, '1hr': 50 },
           dumptruck:  { '15m': 15, '30m': 25, '45m': 35, '1hr': 45 },
-          loader:     { '15m': 15, '30m': 25, '45m': 35, '1hr': 45 }
+          loader:     { '15m': 20, '30m': 30, '45m': 40, '1hr': 50 }
         };
 
         let selectedMachine = 'excavator';
@@ -1888,7 +1888,7 @@
           document.getElementById('bookBtn').textContent = 'Book Session — $' + price + '.00';
         }
 
-        function selectMachine(el) {
+        function selectBookingMachine(el) {
           document.querySelectorAll('.machine-opt').forEach(o => {
             o.style.background = '#1a1a1a';
             o.style.border = '1px solid transparent';
@@ -2082,7 +2082,7 @@
   <div class="section-label">Watch It Live</div>
   <h2 class="section-title reveal">REAL<br><span style="color:var(--orange);">FOOTAGE</span></h2>
   <p class="reveal" style="font-size:1.1rem; line-height:1.8; color:rgba(255,255,255,0.6); max-width:600px; margin: 24px 0 72px;">
-    Bu videolar gerçek RC World oturumlarından kaydedildi. Makineleri <strong style="color:var(--orange);">dünyanın her yerinden</strong> — tam anlamıyla koltuktan — kontrol edebilirsin.
+    These videos were recorded from real RC World sessions. Control the machines <strong style="color:var(--orange);">from anywhere in the world</strong> — literally from your couch.
   </p>
 
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;">
@@ -2226,7 +2226,7 @@
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;">
             🚛 &nbsp;RC DUMP TRUCK · RAISE/LOWER DUMPER CONTROL
           </div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--orange);">$30/hr</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--orange);">$50/hr</div>
         </div>
       </div>
 
@@ -2266,7 +2266,7 @@
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;">
             ⛏ &nbsp;RC EXCAVATOR · BOOM & BUCKET CONTROL
           </div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--yellow);">$30/hr</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--yellow);">$45/hr</div>
         </div>
       </div>
 
@@ -2306,7 +2306,7 @@
       <div class="fleet-name">JDM-208 R920</div>
       <div class="fleet-spec">1/14 Scale · Hydraulic · Full RC · 3-Camera · Boom + Bucket control</div>
       <div class="fleet-price">
-        <div class="fleet-price-amount">$30</div>
+        <div class="fleet-price-amount">$50</div>
         <div class="fleet-price-unit">/ hour</div>
       </div>
     </div>
@@ -2317,7 +2317,7 @@
       <div class="fleet-name">VOLVO EC160E</div>
       <div class="fleet-spec">1/14 Scale · Hydraulic · Licensed body · 360° rotation · Premium</div>
       <div class="fleet-price">
-        <div class="fleet-price-amount">$30</div>
+        <div class="fleet-price-amount">$50</div>
         <div class="fleet-price-unit">/ hour</div>
       </div>
     </div>
@@ -2328,7 +2328,7 @@
       <div class="fleet-name">Kabolite K3362</div>
       <div class="fleet-spec">1/14 · 4×4 Metal · Hydraulic Tipper · Light & Sound · TAMIYA spec</div>
       <div class="fleet-price">
-        <div class="fleet-price-amount">$30</div>
+        <div class="fleet-price-amount">$45</div>
         <div class="fleet-price-unit">/ hour</div>
       </div>
     </div>
@@ -2339,7 +2339,7 @@
       <div class="fleet-name">6×6 Hydraulic Dumper</div>
       <div class="fleet-spec">1/14 · 2-Speed Gearbox · Sound + Light · Painted & Assembled</div>
       <div class="fleet-price">
-        <div class="fleet-price-amount">$30</div>
+        <div class="fleet-price-amount">$45</div>
         <div class="fleet-price-unit">/ hour</div>
       </div>
     </div>
@@ -2350,7 +2350,7 @@
       <div class="fleet-name">Kabolite K966</div>
       <div class="fleet-spec">1/16 · 2.4G · Hydraulic Front Loader · 7500mAh · Construction Vehicle</div>
       <div class="fleet-price">
-        <div class="fleet-price-amount">$30</div>
+        <div class="fleet-price-amount">$50</div>
         <div class="fleet-price-unit">/ hour</div>
       </div>
     </div>
@@ -3169,6 +3169,16 @@ const demoState = {
   dustParticles: [],
   gridOffset: 0
 };
+
+function openDemoWithMachine(type) {
+  // Called from fleet cards — directly open demo with given machine
+  var demoSelectEl = document.querySelector('.machine-opt[data-machine="' + type + '"]');
+  openDemo();
+  // After selector shows, auto-click the right machine
+  setTimeout(function() {
+    if (demoSelectEl) demoSelectEl.click();
+  }, 50);
+}
 
 function openDemo() {
   // Show machine selector, not demo directly
