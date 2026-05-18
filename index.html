@@ -1693,6 +1693,7 @@
     <li><a href="#concept">Concept</a></li>
     <li><a href="#fleet">Fleet</a></li>
     <li><a href="#cameras">Cameras</a></li>
+    <li><a href="#voicechat">Voice</a></li>
     <li><a href="#viral">Social</a></li>
     <li><a href="#investment">Investment</a></li>
     <li><a href="#cta" class="nav-cta">Get Started</a></li>
@@ -2697,6 +2698,412 @@
     </div>
   </div>
 </section>
+
+<!-- VOICE CHAT -->
+<section id="voicechat" style="background:var(--dark); padding:120px 8vw; position:relative; overflow:hidden;">
+
+  <!-- Ambient bg glow -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(ellipse,rgba(255,107,0,0.04) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <div class="section-label">Team Communication</div>
+  <h2 class="section-title reveal">VOICE<br><span style="color:var(--orange);">COMMS</span></h2>
+  <p style="font-size:1rem;color:rgba(255,255,255,0.5);max-width:560px;line-height:1.8;margin-bottom:64px;" class="reveal">
+    Play together, talk together. Push-to-talk like a real walkie-talkie, or keep an open channel — stay connected with your crew while running the machines.
+  </p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;" class="reveal">
+
+    <!-- LEFT: feature list -->
+    <div style="display:flex;flex-direction:column;gap:0;">
+
+      <!-- Mode cards -->
+      <div id="vc-mode-ptt" class="vc-mode-card vc-active" onclick="vcSelectMode('ptt')" style="padding:28px 28px 28px 24px;border-left:3px solid var(--orange);background:rgba(255,107,0,0.06);margin-bottom:2px;cursor:pointer;transition:all 0.2s;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px;">
+          <div style="width:44px;height:44px;background:rgba(255,107,0,0.15);border:1px solid rgba(255,107,0,0.35);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🎙</div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--white);">Push to Talk</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.15em;color:var(--orange);text-transform:uppercase;margin-top:2px;">Walkie-Talkie Mode</div>
+          </div>
+        </div>
+        <div style="font-size:0.85rem;color:rgba(255,255,255,0.55);line-height:1.7;">Hold Space or press the on-screen button — transmit only when you want. Professional radio feel. No background noise, no interruptions.</div>
+      </div>
+
+      <div id="vc-mode-open" class="vc-mode-card" onclick="vcSelectMode('open')" style="padding:28px 28px 28px 24px;border-left:3px solid transparent;background:rgba(255,255,255,0.02);margin-bottom:2px;cursor:pointer;transition:all 0.2s;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px;">
+          <div style="width:44px;height:44px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">📡</div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.6);">Always On</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.15em;color:rgba(255,255,255,0.25);text-transform:uppercase;margin-top:2px;">Open Channel</div>
+          </div>
+        </div>
+        <div style="font-size:0.85rem;color:rgba(255,255,255,0.35);line-height:1.7;">Microphone always live — like you're all in the same room. Machine sounds, ambient noise, everything flows naturally.</div>
+      </div>
+
+      <div id="vc-mode-mute" class="vc-mode-card" onclick="vcSelectMode('mute')" style="padding:28px 28px 28px 24px;border-left:3px solid transparent;background:rgba(255,255,255,0.02);cursor:pointer;transition:all 0.2s;">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px;">
+          <div style="width:44px;height:44px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🔇</div>
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.6);">Mute</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.15em;color:rgba(255,255,255,0.25);text-transform:uppercase;margin-top:2px;">Silent Mode</div>
+          </div>
+        </div>
+        <div style="font-size:0.85rem;color:rgba(255,255,255,0.35);line-height:1.7;">Cut all audio completely. For when you need to focus, or just want to drive in peace.</div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: interactive mockup -->
+    <div style="position:sticky;top:100px;">
+
+      <!-- Voice panel mockup -->
+      <div id="vcPanel" style="background:#0d0d0d;border:1px solid rgba(255,107,0,0.2);box-shadow:0 40px 80px rgba(0,0,0,0.6);">
+
+        <!-- Panel header -->
+        <div style="padding:14px 20px;background:#141414;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);">Voice Channel · Arena A</div>
+          <div id="vcStatusBadge" style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;background:rgba(255,107,0,0.12);color:var(--orange);border:1px solid rgba(255,107,0,0.25);padding:3px 10px;">PTT MODE</div>
+        </div>
+
+        <!-- Active users -->
+        <div style="padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.05);">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:12px;">Players in channel — 4 connected</div>
+
+          <!-- User rows -->
+          <div style="display:flex;flex-direction:column;gap:8px;" id="vcUserList">
+
+            <div class="vc-user" id="vcu-1" style="display:flex;align-items:center;gap:12px;padding:8px 12px;background:rgba(255,107,0,0.08);border:1px solid rgba(255,107,0,0.2);">
+              <div style="position:relative;flex-shrink:0;">
+                <div style="width:34px;height:34px;background:var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:#0a0a0a;">A</div>
+                <div id="vcu-1-ring" style="position:absolute;inset:-3px;border:2px solid var(--orange);border-radius:0;opacity:0;transition:opacity 0.1s;"></div>
+              </div>
+              <div style="flex:1;">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;color:var(--white);">Blake_RC</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;color:rgba(255,107,0,0.7);letter-spacing:0.1em;" id="vcu-1-status">🚜 Driving · Excavator</div>
+              </div>
+              <div id="vcu-1-icon" style="font-size:1.2rem;color:rgba(255,107,0,0.4);">🎙</div>
+            </div>
+
+            <div class="vc-user" id="vcu-2" style="display:flex;align-items:center;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);">
+              <div style="position:relative;flex-shrink:0;">
+                <div style="width:34px;height:34px;background:#2a6;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:#fff;">M</div>
+                <div id="vcu-2-ring" style="position:absolute;inset:-3px;border:2px solid #2a6;border-radius:0;opacity:0;transition:opacity 0.1s;"></div>
+              </div>
+              <div style="flex:1;">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;color:rgba(255,255,255,0.8);">Jordan_M</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;color:rgba(255,255,255,0.35);letter-spacing:0.1em;" id="vcu-2-status">🚛 Driving · Dump Truck</div>
+              </div>
+              <div id="vcu-2-icon" style="font-size:1.2rem;color:rgba(255,255,255,0.15);">🔇</div>
+            </div>
+
+            <div class="vc-user" id="vcu-3" style="display:flex;align-items:center;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);">
+              <div style="position:relative;flex-shrink:0;">
+                <div style="width:34px;height:34px;background:#26a;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:#fff;">K</div>
+                <div id="vcu-3-ring" style="position:absolute;inset:-3px;border:2px solid #26a;border-radius:0;opacity:0;transition:opacity 0.1s;"></div>
+              </div>
+              <div style="flex:1;">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;color:rgba(255,255,255,0.8);">Casey_D</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;color:rgba(255,255,255,0.35);letter-spacing:0.1em;" id="vcu-3-status">🏗 Driving · Loader</div>
+              </div>
+              <div id="vcu-3-icon" style="font-size:1.2rem;color:rgba(255,255,255,0.15);">🎙</div>
+            </div>
+
+            <div class="vc-user" id="vcu-4" style="display:flex;align-items:center;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);">
+              <div style="position:relative;flex-shrink:0;">
+                <div style="width:34px;height:34px;background:#a26;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1rem;color:#fff;">Y</div>
+                <div id="vcu-4-ring" style="position:absolute;inset:-3px;border:2px solid #a26;border-radius:0;opacity:0;transition:opacity 0.1s;"></div>
+              </div>
+              <div style="flex:1;">
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;color:rgba(255,255,255,0.8);">Riley_X</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;color:rgba(255,255,255,0.35);letter-spacing:0.1em;" id="vcu-4-status">👁 Spectating</div>
+              </div>
+              <div id="vcu-4-icon" style="font-size:1.2rem;color:rgba(255,255,255,0.15);">🎙</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Waveform visualizer -->
+        <div style="padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.05);">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:10px;">Input Level</div>
+          <canvas id="vcWave" width="280" height="36" style="width:100%;display:block;"></canvas>
+        </div>
+
+        <!-- PTT Button -->
+        <div style="padding:20px;" id="vcPttArea">
+          <button id="vcPttBtn"
+            onmousedown="vcPttDown()" onmouseup="vcPttUp()" onmouseleave="vcPttUp()"
+            ontouchstart="vcPttDown()" ontouchend="vcPttUp()"
+            style="width:100%;padding:18px;background:rgba(255,107,0,0.1);border:2px solid rgba(255,107,0,0.3);color:var(--orange);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:12px;">
+            <span style="font-size:1.4rem;">🎙</span>
+            <span id="vcPttLabel">PUSH TO TALK</span>
+            <span style="font-size:0.7rem;opacity:0.4;font-weight:400;">[SPACE]</span>
+          </button>
+        </div>
+
+        <!-- Bottom controls -->
+        <div style="padding:14px 20px;background:#0a0a0a;border-top:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;gap:8px;">
+            <button onclick="vcToggleMic()" id="vcMicBtn" style="width:36px;height:36px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:1rem;cursor:pointer;transition:all 0.2s;" title="Microphone">🎙</button>
+            <button onclick="vcToggleDeaf()" id="vcDeafBtn" style="width:36px;height:36px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:1rem;cursor:pointer;transition:all 0.2s;" title="Headphones">🎧</button>
+          </div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;color:rgba(255,255,255,0.2);letter-spacing:0.1em;" id="vcLatency">⚡ 18ms latency</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;color:rgba(0,220,100,0.6);letter-spacing:0.1em;">● CONNECTED</div>
+        </div>
+
+      </div>
+
+      <!-- Keyboard hint -->
+      <div style="margin-top:12px;font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.12em;color:rgba(255,255,255,0.2);text-align:center;text-transform:uppercase;">
+        Space = PTT &nbsp;·&nbsp; M = Mute &nbsp;·&nbsp; 1/2/3 = Switch Mode
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- voice chat JS -->
+<script>
+(function() {
+  // ---- State ----
+  let vcMode = 'ptt';       // 'ptt' | 'open' | 'mute'
+  let vcMicOn = true;
+  let vcDeafOn = true;
+  let vcTalking = false;
+  let vcWaveFrame = null;
+  let vcPhase = 0;
+  let vcAmplitude = 0;      // 0‥1
+  const COLORS = { ptt:'#FF6B00', open:'#22aa66', mute:'#555' };
+
+  // Simulated other talkers
+  const otherTalkers = [
+    { id:'vcu-2', color:'#2a6', interval:null },
+    { id:'vcu-3', color:'#26a', interval:null },
+    { id:'vcu-4', color:'#a26', interval:null },
+  ];
+
+  function startOtherTalkers() {
+    // Random simulated speech events
+    function scheduleTalker(t) {
+      const delay = 2000 + Math.random() * 6000;
+      t.interval = setTimeout(() => {
+        if (vcMode === 'mute') { scheduleTalker(t); return; }
+        const dur = 1200 + Math.random() * 3000;
+        setUserTalking(t.id, true, t.color);
+        setTimeout(() => { setUserTalking(t.id, false, t.color); scheduleTalker(t); }, dur);
+      }, delay);
+    }
+    otherTalkers.forEach(scheduleTalker);
+  }
+
+  function setUserTalking(id, on, color) {
+    const ring = document.getElementById(id + '-ring');
+    const icon = document.getElementById(id + '-icon');
+    const row  = document.getElementById(id);
+    if (!ring) return;
+    ring.style.opacity = on ? '1' : '0';
+    if (on) {
+      ring.style.animation = 'vcRingPulse 0.6s ease-in-out infinite';
+    } else {
+      ring.style.animation = '';
+    }
+    if (icon) icon.textContent = on ? '🔊' : '🎙';
+    if (row) row.style.background = on ? `rgba(${hexToRgb(color)},0.08)` : 'rgba(255,255,255,0.02)';
+  }
+
+  function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1,3)||'0',16);
+    const g = parseInt(hex.slice(3,5)||'0',16);
+    const b = parseInt(hex.slice(5,7)||'0',16);
+    return `${r},${g},${b}`;
+  }
+
+  // ---- Mode selection ----
+  window.vcSelectMode = function(mode) {
+    vcMode = mode;
+    ['ptt','open','mute'].forEach(m => {
+      const el = document.getElementById('vc-mode-' + m);
+      if (!el) return;
+      const active = m === mode;
+      const c = active ? COLORS[m] : 'transparent';
+      const bg = active ? `rgba(${m==='ptt'?'255,107,0':m==='open'?'34,170,102':'80,80,80'},0.06)` : 'rgba(255,255,255,0.02)';
+      el.style.borderLeftColor = c;
+      el.style.background = bg;
+      el.querySelectorAll('div[style*="font-weight:700"]').forEach(d => {
+        d.style.color = active ? '#fff' : 'rgba(255,255,255,0.4)';
+      });
+    });
+
+    const badge = document.getElementById('vcStatusBadge');
+    const pttArea = document.getElementById('vcPttArea');
+    if (mode === 'ptt') {
+      badge.textContent = 'PTT MODE';
+      badge.style.color = 'var(--orange)';
+      badge.style.background = 'rgba(255,107,0,0.12)';
+      badge.style.borderColor = 'rgba(255,107,0,0.25)';
+      pttArea.style.display = 'block';
+      if (vcTalking) vcPttUp();
+      vcAmplitude = 0;
+    } else if (mode === 'open') {
+      badge.textContent = 'OPEN MIC';
+      badge.style.color = '#2a6';
+      badge.style.background = 'rgba(34,170,102,0.1)';
+      badge.style.borderColor = 'rgba(34,170,102,0.25)';
+      pttArea.style.display = 'none';
+      vcTalking = true;
+      setUserTalking('vcu-1', true, COLORS.open);
+    } else {
+      badge.textContent = 'MUTED';
+      badge.style.color = '#888';
+      badge.style.background = 'rgba(100,100,100,0.08)';
+      badge.style.borderColor = 'rgba(100,100,100,0.2)';
+      pttArea.style.display = 'none';
+      vcTalking = false;
+      setUserTalking('vcu-1', false, COLORS.ptt);
+      vcAmplitude = 0;
+    }
+  };
+
+  // ---- PTT ----
+  window.vcPttDown = function() {
+    if (vcMode !== 'ptt' || !vcMicOn) return;
+    vcTalking = true;
+    setUserTalking('vcu-1', true, COLORS.ptt);
+    const btn = document.getElementById('vcPttBtn');
+    btn.style.background = 'rgba(255,107,0,0.25)';
+    btn.style.borderColor = 'var(--orange)';
+    btn.style.boxShadow = '0 0 24px rgba(255,107,0,0.25)';
+    document.getElementById('vcPttLabel').textContent = 'TRANSMITTING...';
+  };
+
+  window.vcPttUp = function() {
+    if (!vcTalking) return;
+    vcTalking = false;
+    setUserTalking('vcu-1', false, COLORS.ptt);
+    const btn = document.getElementById('vcPttBtn');
+    if (btn) {
+      btn.style.background = 'rgba(255,107,0,0.1)';
+      btn.style.borderColor = 'rgba(255,107,0,0.3)';
+      btn.style.boxShadow = '';
+    }
+    document.getElementById('vcPttLabel').textContent = 'PUSH TO TALK';
+    vcAmplitude = 0;
+  };
+
+  // ---- Mic / Deaf toggles ----
+  window.vcToggleMic = function() {
+    vcMicOn = !vcMicOn;
+    const btn = document.getElementById('vcMicBtn');
+    btn.textContent = vcMicOn ? '🎙' : '🔇';
+    btn.style.background = vcMicOn ? 'rgba(255,255,255,0.05)' : 'rgba(255,80,80,0.15)';
+    btn.style.borderColor = vcMicOn ? 'rgba(255,255,255,0.1)' : 'rgba(255,80,80,0.4)';
+    if (!vcMicOn && vcTalking) vcPttUp();
+  };
+
+  window.vcToggleDeaf = function() {
+    vcDeafOn = !vcDeafOn;
+    const btn = document.getElementById('vcDeafBtn');
+    btn.style.background = vcDeafOn ? 'rgba(255,255,255,0.05)' : 'rgba(255,80,80,0.15)';
+    btn.style.borderColor = vcDeafOn ? 'rgba(255,255,255,0.1)' : 'rgba(255,80,80,0.4)';
+  };
+
+  // ---- Keyboard shortcuts ----
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space' && e.target === document.body && vcMode === 'ptt') {
+      e.preventDefault();
+      if (!vcTalking) vcPttDown();
+    }
+    if (e.key === 'm' || e.key === 'M') vcToggleMic();
+    if (e.key === '1') vcSelectMode('ptt');
+    if (e.key === '2') vcSelectMode('open');
+    if (e.key === '3') vcSelectMode('mute');
+  });
+  document.addEventListener('keyup', e => {
+    if (e.code === 'Space' && vcMode === 'ptt') vcPttUp();
+  });
+
+  // ---- Waveform canvas ----
+  function drawWave() {
+    const canvas = document.getElementById('vcWave');
+    if (!canvas) { vcWaveFrame = requestAnimationFrame(drawWave); return; }
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    // Target amplitude
+    const targetAmp = (vcTalking && vcMicOn) ? (0.4 + Math.random() * 0.6) : 0;
+    vcAmplitude += (targetAmp - vcAmplitude) * 0.12;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Background track
+    ctx.fillStyle = 'rgba(255,255,255,0.03)';
+    ctx.fillRect(0, H/2-1, W, 2);
+
+    // Color based on mode
+    const col = vcMode === 'mute' ? '#555' : vcMode === 'open' ? '#2a6' : '#FF6B00';
+
+    if (vcAmplitude > 0.02) {
+      vcPhase += 0.18;
+      ctx.strokeStyle = col;
+      ctx.lineWidth = 1.8;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = col;
+      ctx.beginPath();
+      for (let x = 0; x < W; x++) {
+        const t = x / W;
+        const y = H/2
+          + Math.sin(t * Math.PI * 7 + vcPhase) * vcAmplitude * H * 0.35
+          + Math.sin(t * Math.PI * 13 - vcPhase * 0.7) * vcAmplitude * H * 0.15
+          + Math.sin(t * Math.PI * 3 + vcPhase * 0.3) * vcAmplitude * H * 0.1;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Amplitude fill
+      ctx.fillStyle = col + '18';
+      ctx.beginPath();
+      ctx.moveTo(0, H/2);
+      for (let x = 0; x < W; x++) {
+        const t = x / W;
+        const y = H/2 + Math.sin(t * Math.PI * 7 + vcPhase) * vcAmplitude * H * 0.35;
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(W, H/2);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    // Volume bar at right edge
+    const barH = vcAmplitude * H * 0.85;
+    ctx.fillStyle = col + '60';
+    ctx.fillRect(W-4, H/2 - barH/2, 3, barH);
+
+    vcWaveFrame = requestAnimationFrame(drawWave);
+  }
+
+  // Latency ticker
+  function tickLatency() {
+    const el = document.getElementById('vcLatency');
+    if (el) el.textContent = `⚡ ${12 + Math.floor(Math.random()*18)}ms latency`;
+    setTimeout(tickLatency, 1800 + Math.random()*1200);
+  }
+
+  // Add CSS for ring pulse animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes vcRingPulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.5; transform:scale(1.08); }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Init
+  startOtherTalkers();
+  drawWave();
+  tickLatency();
+})();
+</script>
 
 <!-- VIRAL MOMENTS -->
 <section id="viral">
